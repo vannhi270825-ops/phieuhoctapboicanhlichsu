@@ -53,7 +53,7 @@
      <div class="mb-4 bg-[#ecfdf5] border border-[#6ee7b7] rounded-lg p-4">
       <h3 class="font-semibold text-[#065f46] mb-2 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> Phần 1: Thuận lợi</h3>
       <p class="text-xs text-[#047857] mb-2">Trích dẫn các từ khóa nổi bật hoặc câu văn trong ngoặc kép thể hiện thuận lợi của nhà Nguyễn (Mỗi ý cách nhau bằng dấu chấm phẩy ";")</p>
-      <textarea id="input-thuan-loi" rows="3" placeholder="Ví dụ: thành quả to lớn của phong trào... ; làm chủ một lãnh thổ..." class="w-full px-3 py-2 border border-[#a7f3d0] rounded-lg bg-white focus:border-[#059669] focus:outline-none text-sm resize-none"></textarea>
+      <textarea id="input-thuan-loi" rows="3" placeholder="Nhập từ khóa tại đây..." class="w-full px-3 py-2 border border-[#a7f3d0] rounded-lg bg-white focus:border-[#059669] focus:outline-none text-sm resize-none"></textarea>
      </div>
      
      <div class="mb-4 bg-[#fef2f2] border border-[#fca5a5] rounded-lg p-4">
@@ -71,15 +71,16 @@
      <div class="mb-5 bg-[#fef9e7] border border-[#fcd34d] rounded-lg p-4">
       <h3 class="font-semibold text-[#78350f] mb-2 flex items-center gap-2"><i data-lucide="lightbulb" class="w-5 h-5"></i> Phần 4: Giải pháp đề xuất (AI Chấm điểm tự động)</h3>
       <p class="text-xs text-[#92400e] mb-2">Nếu em là một vị quan nhà Nguyễn thời Gia Long, em sẽ làm gì để giải quyết những vấn đề trên?</p>
-      <textarea id="input-giai-phap" rows="4" placeholder="Nhập ý tưởng giải pháp của em (Ví dụ: Thống nhất luật pháp, cải cách hành chính, phát triển kinh tế, củng cố lòng dân...)" class="w-full px-3 py-2 border border-[#fde047] rounded-lg bg-white focus:border-[#ca8a04] focus:outline-none text-sm resize-none"></textarea>
+      <textarea id="input-giai-phap" rows="4" placeholder="Nhập ý tưởng giải pháp của em..." class="w-full px-3 py-2 border border-[#fde047] rounded-lg bg-white focus:border-[#ca8a04] focus:outline-none text-sm resize-none"></textarea>
      </div>
      
      <button onclick="submitWorksheet()" id="btn-submit" class="w-full py-3 bg-[#8b4513] text-[#fef3c7] font-semibold rounded-lg hover:bg-[#6b3410] transition shadow-md flex items-center justify-center gap-2"> <i data-lucide="send" class="w-5 h-5"></i> Nộp phiếu học tập </button>
      <div id="submit-msg" class="mt-3 text-center text-sm font-medium hidden"></div>
 
-     <div id="evaluation-box" class="mt-6 bg-white border-2 border-[#d4a574] rounded-xl p-5 shadow-inner hidden fade-in">
+     <!-- KHU VỰC HIỂN THỊ PHẦN CHỮA BÀI CHI TIẾT -->
+     <div id="evaluation-box" class="mt-6 bg-white border-2 border-[#d4a574] rounded-xl p-5 shadow-md hidden fade-in">
        <h3 class="heading-font text-xl font-bold text-[#8b4513] mb-4 pb-2 border-b-2 border-[#f0e0cc] flex items-center gap-2">
-         <i data-lucide="file-check-2" class="w-5 h-5 text-[#8b4513]"></i> Báo cáo kết quả & Nhận xét chi tiết từ AI
+         <i data-lucide="file-check-2" class="w-5 h-5 text-[#8b4513]"></i> Báo cáo kết quả & Nhận xét chi tiết
        </h3>
        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 text-center">
          <div class="p-3 bg-[#ecfdf5] rounded-lg border border-emerald-200"><p class="text-xs text-emerald-700 font-semibold">Thuận lợi</p><p id="score-p1" class="text-lg font-bold text-emerald-900">0/100</p></div>
@@ -138,7 +139,6 @@
           setTimeout(() => handler.onDataChanged(data), 100);
           return { isOk: true };
         } catch (error) {
-          console.error("Lỗi khi tải dữ liệu từ Google Sheets:", error);
           return { isOk: false };
         }
       },
@@ -151,7 +151,6 @@
             body: JSON.stringify(record)
           });
           const result = await response.json();
-          
           if (result.isOk) {
             const newDataRes = await fetch(API_URL);
             const newData = await newDataRes.json();
@@ -160,20 +159,17 @@
           }
           return { isOk: false };
         } catch (e) {
-          console.error("Lỗi khi gửi dữ liệu:", e);
           return { isOk: false };
         }
       }
     };
   }
 
-  // State quản lý ứng dụng
   let allRecords = [];
   let currentRecordCount = 0;
   const TEACHER_PASSWORD = 'giaovien';
   let isTeacherLoggedIn = false;
 
-  // HỆ THỐNG ĐÁP ÁN CHUẨN (Được trích xuất nghiêm ngặt từ văn bản)
   const masterAnswers = {
     thuan_loi: [
       "thành quả to lớn của phong trào nông dân Tây Sơn trong sự nghiệp thống nhất đất nước",
@@ -185,7 +181,7 @@
       "hệ thống chính quyền Trung ương thời Gia Long vẫn theo mô hình thời Lê",
       "tạm đặt",
       "quyền lực bị phân tán",
-      "tâm lý 'hoài Lê' của cựu thần nhi Lê và nhân dân Bắc Hà"
+      "tâm lý 'hoài Lê' của cựu thần nhà Lê và nhân dân Bắc Hà"
     ],
     van_de: [
       "giải quyết hài hòa nhưng thống nhất về chế độ chính trị khác nhau của ba miền",
@@ -195,7 +191,6 @@
     ]
   };
 
-  // Tabs điều hướng hành động
   function showTab(tab) {
     ['worksheet','leaderboard','teacher'].forEach(t => {
       document.getElementById('panel-' + t).classList.toggle('hidden', t !== tab);
@@ -219,21 +214,21 @@
       document.getElementById('teacher-view').classList.remove('hidden');
       renderTeacher();
     } else {
-      msg.textContent = '❌ Mật khẩu giáo viên không chính xác!';
+      msg.textContent = '❌ Mật khẩu sai!';
       msg.style.color = '#dc2626';
       msg.classList.remove('hidden');
       setTimeout(() => msg.classList.add('hidden'), 3000);
     }
   }
 
-  // Thuật toán so khớp thông minh (Fuzzy Keyword Matching) phòng trường hợp học sinh gõ thừa thiếu khoảng trắng/dấu câu nhỏ
+  // Thuật toán chấm phần 1, 2, 3 (Chống lỗi gõ linh tinh)
   function checkStandardSection(studentText, standardList) {
     if (!studentText || studentText.trim() === '') {
       return { score: 0, matched: [], missed: standardList };
     }
     
-    // Tách câu trả lời của học sinh dựa trên dấu câu phân cách
-    const studentInputs = studentText.toLowerCase().split(';').map(item => item.trim()).filter(Boolean);
+    // Tách ý học sinh nhập vào
+    const studentInputs = studentText.toLowerCase().split(';').map(item => item.trim()).filter(item => item.length > 0);
     let matched = [];
     let missed = [];
     
@@ -241,68 +236,53 @@
       const lowerAns = ans.toLowerCase().replace(/['"“”]/g, '').trim();
       let isFound = false;
       
-      // Kiểm tra xem cụm từ chuẩn có xuất hiện trong dữ liệu nhập của học sinh không
       for (let input of studentInputs) {
         let cleanInput = input.replace(/['"“”]/g, '').trim();
-        if (cleanInput.includes(lowerAns) || lowerAns.includes(cleanInput) && cleanInput.length > 8) {
+        // Ngăn chặn gõ 1-2 chữ linh tinh. Học sinh phải gõ chuỗi ý nghĩa >= 5 ký tự và có chứa/trùng khớp với đáp án
+        if (cleanInput.length >= 5 && (lowerAns.includes(cleanInput) || cleanInput.includes(lowerAns))) {
           isFound = true;
           break;
         }
       }
-      
-      if (isFound) {
-        matched.push(ans);
-      } else {
-        missed.push(ans);
-      }
+      if (isFound) { matched.push(ans); } else { missed.push(ans); }
     });
     
-    // Tính toán điểm số lũy tiến theo số lượng từ khóa tìm thấy
     let calculatedScore = Math.round((matched.length / standardList.length) * 100);
-    return {
-      score: calculatedScore,
-      matched: matched,
-      missed: missed
-    };
+    return { score: calculatedScore, matched, missed };
   }
 
-  // Bộ AI mô phỏng - chấm điểm mở cho Phần 4 giải pháp đề xuất
+  // Bộ AI Mô phỏng phần 4 (Đã sửa lỗi gõ linh tinh vẫn có điểm)
   function evaluateAiSolution(text) {
     if (!text || text.trim().length < 6) {
-      return {
-        score: 0,
-        comment: "Học sinh không trả lời hoặc câu trả lời quá ngắn không thể thẩm định. Chấm 0 điểm cho mục này."
-      };
+      return { score: 0, comment: "Học sinh để trống hoặc trả lời quá ngắn. AI chấm 0 điểm." };
     }
     
-    let score = 30; // Điểm nền tảng khi chịu khó viết ý kiến cá nhân
-    const coreKeywords = [
-      'thống nhất', 'cải cách', 'trung ương', 'quân chủ', 'hành chính', 'pháp luật', 
-      'luật', 'kinh tế', 'quân đội', 'xoa dịu', 'nhân dân', 'bộ máy', 'quan lại', 'thuế'
-    ];
-    
+    const coreKeywords = ['thống nhất', 'cải cách', 'trung ương', 'quân chủ', 'hành chính', 'pháp luật', 'luật', 'kinh tế', 'quân đội', 'xoa dịu', 'nhân dân', 'bộ máy', 'quan lại', 'thuế', 'chính quyền', 'gia long'];
     let matchCount = 0;
-    coreKeywords.forEach(kw => {
-      if (text.toLowerCase().includes(kw)) matchCount++;
-    });
+    const lowerText = text.toLowerCase();
     
-    score += (matchCount * 10);
-    if (text.length > 80) score += 15; // Cộng điểm thưởng phân tích chi tiết sâu sắc
+    coreKeywords.forEach(kw => { 
+      if (lowerText.includes(kw)) matchCount++; 
+    });
+
+    // NẾU KHÔNG CÓ TỪ KHÓA LỊCH SỬ NÀO -> GÕ LINH TINH -> 0 ĐIỂM
+    if (matchCount === 0) {
+      return { score: 0, comment: "AI Nhận xét: Trả lời linh tinh, lạc đề hoặc không sử dụng các thuật ngữ lịch sử cốt lõi. Chấm 0 điểm." };
+    }
+
+    // NẾU CÓ TỪ KHÓA -> BẮT ĐẦU CHO ĐIỂM
+    let score = 30 + (matchCount * 15);
+    if (text.length > 80 && matchCount >= 2) score += 15;
     score = Math.min(100, score);
     
     let comment = "";
-    if (score >= 85) {
-      comment = "AI Nhận xét: Đề xuất xuất sắc! Thể hiện tư duy tầm vĩ mô chiến lược cao, bao quát cả nhiệm vụ củng cố bộ máy nhà nước tập quyền trung ương lẫn ổn định kinh tế - an dân.";
-    } else if (score >= 55) {
-      comment = "AI Nhận xét: Ý tưởng giải pháp khá tốt. Đã nêu được một số hành động thực tiễn, tuy nhiên cần gắn chặt hơn nữa với việc dung hòa thể chế chính trị khác nhau của 3 miền.";
-    } else {
-      comment = "AI Nhận xét: Ý tưởng còn sơ sài hoặc mang tính chung chung. Cần bám sát vào bối cảnh thách thức chia cắt kéo dài và tâm lý hoài Lê của người dân thời bấy giờ.";
-    }
-    
+    if (score >= 85) { comment = "AI Nhận xét: Đề xuất xuất sắc! Thể hiện tư duy tầm vĩ mô chiến lược cao."; }
+    else if (score >= 55) { comment = "AI Nhận xét: Ý tưởng giải pháp khá tốt. Tuy nhiên cần gắn chặt với bối cảnh lịch sử hơn."; }
+    else { comment = "AI Nhận xét: Ý tưởng còn sơ sài nhưng đã có ý thức dùng thuật ngữ lịch sử."; }
     return { score, comment };
   }
 
-  // Sự kiện Nộp bài & Đánh giá tổng hợp công khai cho học sinh xem tức thì
+  // Xử lý nộp bài
   async function submitWorksheet() {
     const name = document.getElementById('student-name').value.trim();
     const thuanLoi = document.getElementById('input-thuan-loi').value.trim();
@@ -311,24 +291,72 @@
     const giaiPhap = document.getElementById('input-giai-phap').value.trim();
     const msg = document.getElementById('submit-msg');
 
-    if (!name) { showMsg(msg, '⚠️ Học sinh bắt buộc phải điền Họ và tên để hệ thống chấm bài!', '#dc2626'); return; }
+    if (!name) { 
+      showMsg(msg, '⚠️ Học sinh bắt buộc phải điền Họ và tên để hệ thống chấm bài!', '#dc2626'); 
+      return; 
+    }
 
-    // Thực hiện chấm điểm tự động cho từng phần học tập
+    // 1. CHẤM ĐIỂM TỨC THÌ
     const resP1 = checkStandardSection(thuanLoi, masterAnswers.thuan_loi);
     const resP2 = checkStandardSection(khoKhan, masterAnswers.kho_khan);
     const resP3 = checkStandardSection(vanDe, masterAnswers.van_de);
     const resP4 = evaluateAiSolution(giaiPhap);
-
-    // Tính điểm tổng kết quy đổi hệ 100 bằng trung bình cộng 4 phân mục
     const finalScore = Math.round((resP1.score + resP2.score + resP3.score + resP4.score) / 4);
 
+    // 2. HIỂN THỊ ĐÁP ÁN BẤT CHẤP LỖI MẠNG (Đã fix lỗi bị ẩn)
+    document.getElementById('score-p1').textContent = resP1.score + '/100';
+    document.getElementById('score-p2').textContent = resP2.score + '/100';
+    document.getElementById('score-p3').textContent = resP3.score + '/100';
+    document.getElementById('score-p4').textContent = resP4.score + '/100';
+    document.getElementById('score-final').textContent = finalScore;
+
+    let detailHtml = `
+      <div class="p-3 bg-[#f0fdf4] rounded-lg border border-emerald-200">
+        <strong class="text-emerald-800 flex items-center gap-1"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Phần 1 - Thuận lợi:</strong>
+        <div class="text-xs text-gray-700 mt-2">
+          <p class="text-blue-700"><strong>Từ khóa bạn tìm trúng (${resP1.matched.length}/${masterAnswers.thuan_loi.length}):</strong> ${resP1.matched.length > 0 ? resP1.matched.map(m=>`"${m}"`).join(', ') : 'Chưa có'}</p>
+          <p class="mt-2 text-red-700 font-medium"><strong>ĐÁP ÁN CHUẨN TRONG VĂN BẢN:</strong></p>
+          <ul class="list-disc list-inside pl-2 text-gray-800 mt-1 space-y-1">${masterAnswers.thuan_loi.map(a => `<li>"${a}"</li>`).join('')}</ul>
+        </div>
+      </div>
+
+      <div class="p-3 bg-[#fff5f5] rounded-lg border border-rose-200">
+        <strong class="text-rose-800 flex items-center gap-1"><i data-lucide="alert-circle" class="w-4 h-4"></i> Phần 2 - Khó khăn:</strong>
+        <div class="text-xs text-gray-700 mt-2">
+          <p class="text-blue-700"><strong>Từ khóa bạn tìm trúng (${resP2.matched.length}/${masterAnswers.kho_khan.length}):</strong> ${resP2.matched.length > 0 ? resP2.matched.map(m=>`"${m}"`).join(', ') : 'Chưa có'}</p>
+          <p class="mt-2 text-red-700 font-medium"><strong>ĐÁP ÁN CHUẨN TRONG VĂN BẢN:</strong></p>
+          <ul class="list-disc list-inside pl-2 text-gray-800 mt-1 space-y-1">${masterAnswers.kho_khan.map(a => `<li>"${a}"</li>`).join('')}</ul>
+        </div>
+      </div>
+
+      <div class="p-3 bg-[#eff6ff] rounded-lg border border-blue-200">
+        <strong class="text-blue-800 flex items-center gap-1"><i data-lucide="target" class="w-4 h-4"></i> Phần 3 - Vấn đề cần giải quyết:</strong>
+        <div class="text-xs text-gray-700 mt-2">
+          <p class="text-blue-700"><strong>Từ khóa bạn tìm trúng (${resP3.matched.length}/${masterAnswers.van_de.length}):</strong> ${resP3.matched.length > 0 ? resP3.matched.map(m=>`"${m}"`).join(', ') : 'Chưa có'}</p>
+          <p class="mt-2 text-red-700 font-medium"><strong>ĐÁP ÁN CHUẨN TRONG VĂN BẢN:</strong></p>
+          <ul class="list-disc list-inside pl-2 text-gray-800 mt-1 space-y-1">${masterAnswers.van_de.map(a => `<li>"${a}"</li>`).join('')}</ul>
+        </div>
+      </div>
+
+      <div class="p-3 bg-[#fffbeb] rounded-lg border border-amber-200">
+        <strong class="text-amber-800 flex items-center gap-1"><i data-lucide="brain-circuit" class="w-4 h-4"></i> Phần 4 - Biện pháp đề xuất:</strong>
+        <p class="text-sm text-[#92400e] font-semibold mt-2">${resP4.comment}</p>
+      </div>
+    `;
+    
+    document.getElementById('evaluation-details').innerHTML = detailHtml;
+    document.getElementById('evaluation-box').classList.remove('hidden');
+    lucide.createIcons();
+    document.getElementById('evaluation-box').scrollIntoView({ behavior: 'smooth' });
+
+    // 3. ĐỒNG BỘ DỮ LIỆU CHẠY NGẦM
     const btn = document.getElementById('btn-submit');
     btn.disabled = true;
-    btn.innerHTML = '<span class="animate-pulse">AI Đang chấm bài và đồng bộ dữ liệu...</span>';
+    btn.innerHTML = '<span class="animate-pulse">Đang đồng bộ kết quả...</span>';
+    showMsg(msg, '🔄 Đang gửi dữ liệu bài làm lên hệ thống lưu trữ...', '#3b82f6');
 
-    let result = { isOk: false };
     try {
-      result = await window.dataSdk.create({
+      const result = await window.dataSdk.create({
         student_name: name,
         thuan_loi: thuanLoi,
         kho_khan: khoKhan,
@@ -337,74 +365,24 @@
         submitted_at: new Date().toISOString(),
         score: finalScore
       });
+      if (result && result.isOk) {
+        showMsg(msg, '✅ Bài làm của bạn đã được ghi nhận thành công!', '#059669');
+      } else {
+        showMsg(msg, '⚠️ Đã hiển thị đáp án bên dưới! (Chưa lưu được điểm vào máy chủ)', '#d97706');
+      }
     } catch(err) {
-      console.error("Lỗi API lưu trữ dữ liệu:", err);
+      showMsg(msg, '⚠️ Đã hiển thị đáp án bên dưới! (Lỗi mạng khi lưu điểm)', '#d97706');
     }
 
     btn.disabled = false;
     btn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i> Nộp phiếu học tập';
     lucide.createIcons();
-
-    if (result && result.isOk) {
-      showMsg(msg, '🎉 Chúc mừng! Bài làm của bạn đã được ghi nhận thành công trên hệ thống.', '#059669');
-      
-      // KÍCH HOẠT HỘP THOẠI CHỮA BÀI CHI TIẾT CHO HỌC SINH TỰ HỌC
-      document.getElementById('score-p1').textContent = resP1.score + '/100';
-      document.getElementById('score-p2').textContent = resP2.score + '/100';
-      document.getElementById('score-p3').textContent = resP3.score + '/100';
-      document.getElementById('score-p4').textContent = resP4.score + '/100';
-      document.getElementById('score-final').textContent = finalScore;
-
-      let detailHtml = `
-        <div class="p-3 bg-[#f0fdf4] rounded-lg border border-emerald-200">
-          <strong class="text-emerald-800 flex items-center gap-1"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Phần 1 - Thuận lợi:</strong>
-          <div class="text-xs text-gray-700 mt-1">
-            <p class="text-blue-700"><strong>Từ khóa bạn đã tìm trúng (${resP1.matched.length}/${masterAnswers.thuan_loi.length}):</strong> ${resP1.matched.length > 0 ? resP1.matched.map(m=>`"${m}"`).join(', ') : 'Chưa có'}</p>
-            <p class="mt-1 text-red-700 font-medium"><strong>Đáp án chuẩn hệ thống tìm kiếm:</strong></p>
-            <ul class="list-disc list-inside pl-2 text-gray-600">${masterAnswers.thuan_loi.map(a => `<li>"${a}"</li>`).join('')}</ul>
-          </div>
-        </div>
-
-        <div class="p-3 bg-[#fff5f5] rounded-lg border border-rose-200">
-          <strong class="text-rose-800 flex items-center gap-1"><i data-lucide="alert-circle" class="w-4 h-4"></i> Phần 2 - Khó khăn:</strong>
-          <div class="text-xs text-gray-700 mt-1">
-            <p class="text-blue-700"><strong>Từ khóa bạn đã tìm trúng (${resP2.matched.length}/${masterAnswers.kho_khan.length}):</strong> ${resP2.matched.length > 0 ? resP2.matched.map(m=>`"${m}"`).join(', ') : 'Chưa có'}</p>
-            <p class="mt-1 text-red-700 font-medium"><strong>Đáp án chuẩn hệ thống tìm kiếm:</strong></p>
-            <ul class="list-disc list-inside pl-2 text-gray-600">${masterAnswers.kho_khan.map(a => `<li>"${a}"</li>`).join('')}</ul>
-          </div>
-        </div>
-
-        <div class="p-3 bg-[#eff6ff] rounded-lg border border-blue-200">
-          <strong class="text-blue-800 flex items-center gap-1"><i data-lucide="target" class="w-4 h-4"></i> Phần 3 - Vấn đề cần giải quyết:</strong>
-          <div class="text-xs text-gray-700 mt-1">
-            <p class="text-blue-700"><strong>Từ khóa bạn đã tìm trúng (${resP3.matched.length}/${masterAnswers.van_de.length}):</strong> ${resP3.matched.length > 0 ? resP3.matched.map(m=>`"${m}"`).join(', ') : 'Chưa có'}</p>
-            <p class="mt-1 text-red-700 font-medium"><strong>Đáp án chuẩn hệ thống tìm kiếm:</strong></p>
-            <ul class="list-disc list-inside pl-2 text-gray-600">${masterAnswers.van_de.map(a => `<li>"${a}"</li>`).join('')}</ul>
-          </div>
-        </div>
-
-        <div class="p-3 bg-[#fffbeb] rounded-lg border border-amber-200">
-          <strong class="text-amber-800 flex items-center gap-1"><i data-lucide="brain-circuit" class="w-4 h-4"></i> Phần 4 - Biện pháp đề xuất:</strong>
-          <p class="text-xs text-[#92400e] font-semibold mt-1">${resP4.comment}</p>
-        </div>
-      `;
-      
-      document.getElementById('evaluation-details').innerHTML = detailHtml;
-      document.getElementById('evaluation-box').classList.remove('hidden');
-      lucide.createIcons();
-      
-      // Cuộn êm ái xuống khu vực hiển thị kết quả chữa bài
-      document.getElementById('evaluation-box').scrollIntoView({ behavior: 'smooth' });
-    } else {
-      showMsg(msg, '❌ Máy chủ trục trặc hoặc kết nối bị ngắt quãng. Vui lòng thử lại sau ít phút.', '#dc2626');
-    }
   }
 
   function showMsg(el, text, color) {
-    el.textContent = text;
-    el.style.color = color;
+    el.textContent = text; 
+    el.style.color = color; 
     el.classList.remove('hidden');
-    setTimeout(() => el.classList.add('hidden'), 5000);
   }
 
   function renderLeaderboard() {
@@ -412,7 +390,6 @@
     const empty = document.getElementById('leaderboard-empty');
     if (!allRecords || allRecords.length === 0) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
     empty.classList.add('hidden');
-
     const sorted = [...allRecords].sort((a, b) => b.score - a.score);
     list.innerHTML = sorted.map((r, i) => `
       <div class="flex items-center gap-3 bg-white border border-[#d4a574] rounded-lg px-4 py-3 shadow-sm">
@@ -429,7 +406,6 @@
     const empty = document.getElementById('teacher-empty');
     if (!allRecords || allRecords.length === 0) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
     empty.classList.add('hidden');
-
     const sorted = [...allRecords].sort((a, b) => b.score - a.score);
     list.innerHTML = sorted.map(r => `
       <details class="bg-white border border-[#d4a574] rounded-lg shadow-sm">
@@ -438,17 +414,17 @@
           <span class="text-xs font-normal text-[#8b7355]">${new Date(r.submitted_at).toLocaleString('vi-VN')}</span>
         </summary>
         <div class="p-4 pt-0 border-t border-[#f0e0cc] space-y-3 text-sm">
-          <div><span class="font-semibold text-[#065f46]">Dữ liệu Thuận lợi học sinh nộp:</span><div class="mt-1">${renderTags(r.thuan_loi)}</div></div>
-          <div><span class="font-semibold text-[#991b1b]">Dữ liệu Khó khăn học sinh nộp:</span><div class="mt-1">${renderTags(r.kho_khan)}</div></div>
-          <div><span class="font-semibold text-[#1e40af]">Dữ liệu Vấn đề cần giải quyết học sinh nộp:</span><div class="mt-1">${renderTags(r.van_de)}</div></div>
-          <div><span class="font-semibold text-[#78350f]">Giải pháp sáng tạo tự luận:</span><p class="mt-1 p-2 bg-gray-50 rounded text-xs italic text-gray-700">${r.giai_phap ? escHtml(r.giai_phap) : 'Chưa điền'}</p></div>
+          <div><span class="font-semibold text-[#065f46]">Thuận lợi:</span><div class="mt-1">${renderTags(r.thuan_loi)}</div></div>
+          <div><span class="font-semibold text-[#991b1b]">Khó khăn:</span><div class="mt-1">${renderTags(r.kho_khan)}</div></div>
+          <div><span class="font-semibold text-[#1e40af]">Vấn đề cần giải quyết:</span><div class="mt-1">${renderTags(r.van_de)}</div></div>
+          <div><span class="font-semibold text-[#78350f]">Giải pháp tự luận:</span><p class="mt-1 p-2 bg-gray-50 rounded text-xs italic">${r.giai_phap ? escHtml(r.giai_phap) : 'Chưa điền'}</p></div>
         </div>
       </details>
     `).join('');
   }
 
   function renderTags(text) {
-    if (!text) return '<em class="text-gray-400">Không trả lời (0 điểm)</em>';
+    if (!text) return '<em class="text-gray-400">Không trả lời (0đ)</em>';
     return text.split(';').map(t => t.trim()).filter(Boolean).map(t => `<span class="tag">${escHtml(t)}</span>`).join(' ');
   }
 
@@ -469,16 +445,12 @@
 
   window.elementSdk.init({
     defaultConfig: { main_title: 'Phiếu Học Tập: Bối Cảnh Cuộc Cải Cách Minh Mạng' },
-    onConfigChange: async (config) => { applyConfig(config); },
-    mapToCapabilities: (config) => ({ recolorables: [], borderables: [] }),
-    mapToEditPanelValues: (config) => new Map([['main_title', config.main_title || '']])
+    onConfigChange: async (config) => { applyConfig(config); }
   });
 
   (async () => {
-    const r = await window.dataSdk.init(window.dataHandler);
-    if (!r.isOk) console.error('Khởi tạo Data SDK thất bại');
+    await window.dataSdk.init(window.dataHandler);
   })();
-
   lucide.createIcons();
 </script>
  </body>
