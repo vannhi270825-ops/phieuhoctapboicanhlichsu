@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="vi" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phiếu Học Tập Lịch Sử</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Be Vietnam Pro', sans-serif; }
+    .heading-font { font-family: 'Crimson Pro', serif; }
+    .scroll-area::-webkit-scrollbar { width: 6px; }
+    .scroll-area::-webkit-scrollbar-thumb { background: #c4a882; border-radius: 3px; }
+    .fade-in { animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .tag { display: inline-block; background: #fef3c7; border: 1px solid #d97706; color: #92400e; padding: 2px 8px; border-radius: 4px; margin: 2px; font-size: 0.8rem; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ <script src="/_sdk/telemetry_sdk.js"></script></head>
+ <body class="h-full bg-[#faf6f0] text-[#3d2b1f] overflow-auto">
+  <div id="app" class="w-full h-full flex flex-col">
+   <!-- Header -->
+   <header class="bg-[#8b4513] text-[#fef3c7] py-4 px-6 shadow-lg">
+    <h1 id="main-title" class="heading-font text-2xl md:text-3xl font-bold text-center">Phiếu Học Tập: Bối Cảnh Cuộc Cải Cách Minh Mạng</h1>
+    <p class="text-center text-sm mt-1 opacity-80">Môn Lịch sử – Lớp 11</p>
+   </header><!-- Navigation Tabs -->
+   <nav class="flex border-b border-[#d4a574] bg-[#fff8f0]">
+    <button onclick="showTab('worksheet')" id="tab-worksheet" class="flex-1 py-3 px-4 text-sm font-medium border-b-3 border-[#8b4513] text-[#8b4513] bg-white"> <i data-lucide="edit-3" class="inline w-4 h-4 mr-1"></i> Làm bài </button> <button onclick="showTab('leaderboard')" id="tab-leaderboard" class="flex-1 py-3 px-4 text-sm font-medium text-[#6b4423] hover:bg-[#fef3c7] transition"> <i data-lucide="trophy" class="inline w-4 h-4 mr-1"></i> Bảng xếp hạng </button> <button onclick="showTab('teacher')" id="tab-teacher" class="flex-1 py-3 px-4 text-sm font-medium text-[#6b4423] hover:bg-[#fef3c7] transition"> <i data-lucide="eye" class="inline w-4 h-4 mr-1"></i> Giáo viên </button>
+   </nav><!-- Content -->
+   <div class="flex-1 overflow-auto scroll-area p-4 md:p-6">
+    <!-- Worksheet Tab -->
+    <div id="panel-worksheet" class="max-w-4xl mx-auto fade-in">
+     <!-- Source Text -->
+     <details class="mb-5 bg-white border border-[#d4a574] rounded-lg shadow-sm">
+      <summary class="cursor-pointer p-4 font-semibold text-[#8b4513] flex items-center gap-2"> <i data-lucide="book-open" class="w-5 h-5"></i> Đọc tư liệu lịch sử </summary>
+      <div class="p-4 pt-0 text-sm leading-relaxed text-[#4a3728] border-t border-[#f0e0cc]">
+       <p class="mt-3">"Sau khi thành lập, vương triều Nguyễn đã thừa hưởng được thành quả to lớn của phong trào nông dân Tây Sơn trong sự nghiệp thống nhất đất nước, làm chủ một lãnh thổ trải dài từ ải Nam Quan đến mũi Cà Mau, bao gồm cả Đàng Trong và Đàng Ngoài. Để xây dựng một vương triều vững mạnh, vua Gia Long phải giải quyết hài hòa nhưng thống nhất về chế độ chính trị khác nhau của ba miền trong buổi đầu dựng nghiệp. Do vậy, hệ thống chính quyền Trung ương thời Gia Long vẫn theo mô hình thời Lê, mặc dù vua Gia Long đã nói rõ chỉ là "tạm đặt" trong buổi đầu. Từ thời Minh Mệnh (1820 - 1840) việc cải tổ, kiện toàn và hoàn thiện bộ máy nhà nước mới được thực hiện một cách quy củ và triều đình Nguyễn thật sự trở thành một nhà nước quân chủ chuyên chế phát triển đến đỉnh cao.</p>
+       <p class="mt-3">Vương triều Nguyễn được thành lập trong một bối cảnh chính trị - xã hội tương đối phức tạp. Nhà Nguyễn phải đối mặt với nhiều khó khăn trở ngại. Sự chia cắt Đàng Trong - Đàng Ngoài trong hơn hai thế kỷ đã tạo nên sự khác biệt nhất định về thể chế chính trị hai miền, về cách thức tổ chức và phương pháp quản lý. Nhà Tây Sơn tồn tại trong một thời gian ngắn, trên thực tế quyền lực bị phân tán nên chưa có điều kiện và khả năng tạo nên một mô hình tổ chức chính quyền thống nhất. Mặc dù dòng họ Nguyễn có nguồn gốc từ xứ Thanh, tổ tiên nhà Nguyễn gắn bó mật thiết với vương triều Lê - Trịnh nhưng có lẽ vua Gia Long cũng không thể hiểu một cách tường tận về đất Bắc Hà, về tâm lý "hoài Lê" của cựu thần nhà Lê và nhân dân Bắc Hà. Đây chính là những vấn đề mà Gia Long rất quan tâm và thận trọng khi tiến hành xây dựng mô hình bộ máy chính quyền buổi đầu."</p>
+       <p class="mt-3 text-xs italic text-[#8b7355]">Nguồn: T. T. Yến, V. D. Mền, N. Đ. Nhuệ, N. H. Tâm, and P. Á. Phương, <em>Lịch sử Việt Nam tập 05 - Từ năm 1802 đến năm 1858</em>. Hà Nội: NXB Khoa học xã hội, 2017, tr. 26.</p>
+      </div>
+     </details><!-- Student Name -->
+     <div class="mb-5">
+      <label for="student-name" class="block text-sm font-semibold mb-1 text-[#6b4423]">Họ và tên học sinh:</label> <input type="text" id="student-name" placeholder="Nhập họ và tên..." class="w-full px-4 py-2.5 border-2 border-[#d4a574] rounded-lg bg-white focus:border-[#8b4513] focus:outline-none transition text-sm">
+     </div><!-- Section 1: Thuận lợi -->
+     <div class="mb-4 bg-[#ecfdf5] border border-[#6ee7b7] rounded-lg p-4">
+      <h3 class="font-semibold text-[#065f46] mb-2 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> Phần 1: Thuận lợi</h3>
+      <p class="text-xs text-[#047857] mb-2">Điền các từ khóa nổi bật về thuận lợi mà vương triều Nguyễn thừa hưởng (mỗi từ khóa cách nhau bằng dấu chấm phẩy ";")</p><textarea id="input-thuan-loi" rows="3" placeholder="Nhập từ khóa tại đây..." class="w-full px-3 py-2 border border-[#a7f3d0] rounded-lg bg-white focus:border-[#059669] focus:outline-none text-sm resize-none"></textarea>
+     </div><!-- Section 2: Khó khăn -->
+     <div class="mb-4 bg-[#fef2f2] border border-[#fca5a5] rounded-lg p-4">
+      <h3 class="font-semibold text-[#991b1b] mb-2 flex items-center gap-2"><i data-lucide="alert-triangle" class="w-5 h-5"></i> Phần 2: Khó khăn</h3>
+      <p class="text-xs text-[#dc2626] mb-2">Điền các từ khóa về khó khăn, thách thức mà triều Nguyễn phải đối mặt (mỗi từ khóa cách nhau bằng dấu ";")</p><textarea id="input-kho-khan" rows="4" placeholder="Nhập từ khóa tại đây..." class="w-full px-3 py-2 border border-[#fecaca] rounded-lg bg-white focus:border-[#ef4444] focus:outline-none text-sm resize-none"></textarea>
+     </div><!-- Section 3: Vấn đề cần giải quyết -->
+     <div class="mb-5 bg-[#eff6ff] border border-[#93c5fd] rounded-lg p-4">
+      <h3 class="font-semibold text-[#1e40af] mb-2 flex items-center gap-2"><i data-lucide="target" class="w-5 h-5"></i> Phần 3: Vấn đề đặt ra cần giải quyết</h3>
+      <p class="text-xs text-[#2563eb] mb-2">Điền các từ khóa về vấn đề cấp bách cần giải quyết (mỗi từ khóa cách nhau bằng dấu ";")</p><textarea id="input-van-de" rows="4" placeholder="Nhập từ khóa tại đây..." class="w-full px-3 py-2 border border-[#bfdbfe] rounded-lg bg-white focus:border-[#3b82f6] focus:outline-none text-sm resize-none"></textarea>
+     </div><!-- Section 4: Giải pháp -->
+     <div class="mb-5 bg-[#fef9e7] border border-[#fcd34d] rounded-lg p-4">
+      <h3 class="font-semibold text-[#78350f] mb-2 flex items-center gap-2"><i data-lucide="lightbulb" class="w-5 h-5"></i> Phần 4: Giải pháp đề xuất</h3>
+      <p class="text-xs text-[#92400e] mb-2">Nếu em là một vị quan nhà Nguyễn thời Gia Long, em sẽ làm gì để giải quyết những vấn đề trên?</p><textarea id="input-giai-phap" rows="4" placeholder="Nhập ý tưởng giải pháp của em..." class="w-full px-3 py-2 border border-[#fde047] rounded-lg bg-white focus:border-[#ca8a04] focus:outline-none text-sm resize-none"></textarea>
+     </div><!-- Submit Button --> <button onclick="submitWorksheet()" id="btn-submit" class="w-full py-3 bg-[#8b4513] text-[#fef3c7] font-semibold rounded-lg hover:bg-[#6b3410] transition shadow-md flex items-center justify-center gap-2"> <i data-lucide="send" class="w-5 h-5"></i> Nộp phiếu học tập </button>
+     <div id="submit-msg" class="mt-3 text-center text-sm hidden"></div>
+    </div><!-- Leaderboard Tab -->
+    <div id="panel-leaderboard" class="max-w-3xl mx-auto fade-in hidden">
+     <h2 class="heading-font text-xl font-bold text-[#8b4513] mb-4 flex items-center gap-2"><i data-lucide="trophy" class="w-6 h-6"></i> Bảng xếp hạng học sinh (theo điểm)</h2>
+     <div id="leaderboard-list" class="space-y-2"></div>
+     <p id="leaderboard-empty" class="text-center text-[#8b7355] py-8 italic">Chưa có học sinh nào nộp bài.</p>
+    </div><!-- Teacher Tab -->
+    <div id="panel-teacher" class="max-w-4xl mx-auto fade-in hidden">
+     <div id="teacher-login-form" class="bg-white border border-[#d4a574] rounded-lg shadow-md p-6 max-w-md mx-auto">
+      <h2 class="heading-font text-xl font-bold text-[#8b4513] mb-4 text-center">Đăng nhập Giáo viên</h2>
+      <p class="text-sm text-[#6b4423] mb-4 text-center">Nhập mật khẩu để xem bài làm của học sinh</p><input type="password" id="teacher-password" placeholder="Mật khẩu" class="w-full px-4 py-2.5 border-2 border-[#d4a574] rounded-lg bg-white focus:border-[#8b4513] focus:outline-none transition text-sm mb-4"> <button onclick="checkTeacherPassword()" class="w-full py-2.5 bg-[#8b4513] text-[#fef3c7] font-semibold rounded-lg hover:bg-[#6b3410] transition">Đăng nhập</button>
+      <div id="teacher-login-msg" class="mt-2 text-center text-xs hidden"></div>
+     </div>
+     <div id="teacher-view" class="hidden">
+      <h2 class="heading-font text-xl font-bold text-[#8b4513] mb-4 flex items-center gap-2"><i data-lucide="eye" class="w-6 h-6"></i> Xem đáp án của học sinh</h2>
+      <div id="teacher-list" class="space-y-4"></div>
+      <p id="teacher-empty" class="text-center text-[#8b7355] py-8 italic">Chưa có bài nộp nào.</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+  // State
+  let allRecords = [];
+  let currentRecordCount = 0;
+  const TEACHER_PASSWORD = 'giaovien';
+  let isTeacherLoggedIn = false;
+
+  // Correct answers
+  const correctAnswers = {
+    thuan_loi: [
+      'thành quả to lớn của phong trào nông dân Tây Sơn trong sự nghiệp thống nhất đất nước',
+      'ải Nam Quan đến mũi Cà Mau',
+      'lãnh thổ trải dài'
+    ],
+    kho_khan: [
+      'bối cảnh chính trị - xã hội tương đối phức tạp',
+      'sự chia cắt Đàng Trong - Đàng Ngoài trong hơn hai thế kỷ',
+      'quyền lực bị phân tán',
+      'tâm lý hoài Lê của cựu thần nhà Lê và nhân dân Bắc Hà'
+    ],
+    van_de: [
+      'giải quyết hài hòa nhưng thống nhất về chế độ chính trị khác nhau của ba miền',
+      'cải tổ, kiện toàn và hoàn thiện bộ máy nhà nước',
+      'thống nhất thể chế chính trị'
+    ]
+  };
+
+  // Tabs
+  function showTab(tab) {
+    ['worksheet','leaderboard','teacher'].forEach(t => {
+      document.getElementById('panel-' + t).classList.toggle('hidden', t !== tab);
+      const btn = document.getElementById('tab-' + t);
+      if (t === tab) {
+        btn.classList.add('border-b-3','border-[#8b4513]','text-[#8b4513]','bg-white');
+        btn.classList.remove('text-[#6b4423]');
+      } else {
+        btn.classList.remove('border-b-3','border-[#8b4513]','text-[#8b4513]','bg-white');
+        btn.classList.add('text-[#6b4423]');
+      }
+    });
+  }
+
+  // Check teacher password
+  function checkTeacherPassword() {
+    const pwd = document.getElementById('teacher-password').value;
+    const msg = document.getElementById('teacher-login-msg');
+    
+    if (pwd === TEACHER_PASSWORD) {
+      isTeacherLoggedIn = true;
+      document.getElementById('teacher-login-form').classList.add('hidden');
+      document.getElementById('teacher-view').classList.remove('hidden');
+      renderTeacher();
+    } else {
+      msg.textContent = '❌ Mật khẩu sai!';
+      msg.style.color = '#dc2626';
+      msg.classList.remove('hidden');
+      setTimeout(() => msg.classList.add('hidden'), 3000);
+    }
+  }
+
+  // Calculate score based on keyword matching
+  function calculateScore(field, text) {
+    if (!text) return 0;
+    const keywords = text.toLowerCase().split(';').map(k => k.trim()).filter(Boolean);
+    const correct = correctAnswers[field] || [];
+    let score = 0;
+    keywords.forEach(k => {
+      correct.forEach(c => {
+        if (c.toLowerCase().includes(k) || k.includes(c.toLowerCase().substring(0, 5))) {
+          score += 10;
+        }
+      });
+    });
+    return Math.min(score, 100);
+  }
+
+  // Submit
+  async function submitWorksheet() {
+    const name = document.getElementById('student-name').value.trim();
+    const thuanLoi = document.getElementById('input-thuan-loi').value.trim();
+    const khoKhan = document.getElementById('input-kho-khan').value.trim();
+    const vanDe = document.getElementById('input-van-de').value.trim();
+    const giaiPhap = document.getElementById('input-giai-phap').value.trim();
+    const msg = document.getElementById('submit-msg');
+
+    if (!name) { showMsg(msg, '⚠️ Vui lòng nhập họ và tên!', '#dc2626'); return; }
+    if (!thuanLoi && !khoKhan && !vanDe && !giaiPhap) { showMsg(msg, '⚠️ Vui lòng điền ít nhất một phần!', '#dc2626'); return; }
+
+    if (currentRecordCount >= 999) {
+      showMsg(msg, '⚠️ Kho lưu trữ đã đầy (999 bài). Không thể nộp thêm.', '#dc2626');
+      return;
+    }
+
+    // Calculate total score
+    const s1 = calculateScore('thuan_loi', thuanLoi);
+    const s2 = calculateScore('kho_khan', khoKhan);
+    const s3 = calculateScore('van_de', vanDe);
+    const s4 = giaiPhap ? 20 : 0;
+    const totalScore = Math.round((s1 + s2 + s3 + s4) / 4);
+
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="animate-pulse">Đang nộp...</span>';
+
+    const result = await window.dataSdk.create({
+      student_name: name,
+      thuan_loi: thuanLoi,
+      kho_khan: khoKhan,
+      van_de: vanDe,
+      giai_phap: giaiPhap,
+      submitted_at: new Date().toISOString(),
+      score: totalScore
+    });
+
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i> Nộp phiếu học tập';
+    lucide.createIcons();
+
+    if (result.isOk) {
+      showMsg(msg, '✅ Nộp bài thành công! Điểm của bạn: ' + totalScore + '/100', '#059669');
+      document.getElementById('input-thuan-loi').value = '';
+      document.getElementById('input-kho-khan').value = '';
+      document.getElementById('input-van-de').value = '';
+      document.getElementById('input-giai-phap').value = '';
+    } else {
+      showMsg(msg, '❌ Có lỗi xảy ra. Vui lòng thử lại.', '#dc2626');
+    }
+  }
+
+  function showMsg(el, text, color) {
+    el.textContent = text;
+    el.style.color = color;
+    el.classList.remove('hidden');
+    setTimeout(() => el.classList.add('hidden'), 4000);
+  }
+
+  // Render leaderboard (sorted by score)
+  function renderLeaderboard() {
+    const list = document.getElementById('leaderboard-list');
+    const empty = document.getElementById('leaderboard-empty');
+    if (allRecords.length === 0) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+
+    const sorted = [...allRecords].sort((a, b) => b.score - a.score);
+    list.innerHTML = sorted.map((r, i) => `
+      <div class="flex items-center gap-3 bg-white border border-[#d4a574] rounded-lg px-4 py-3 shadow-sm">
+        <span class="w-8 h-8 flex items-center justify-center rounded-full font-bold text-sm ${i < 3 ? 'bg-[#fef3c7] text-[#8b4513]' : 'bg-gray-100 text-gray-600'}">${i + 1}</span>
+        <span class="flex-1 font-medium text-sm">${escHtml(r.student_name)}</span>
+        <span class="px-3 py-1 bg-[#eff6ff] text-[#1e40af] font-semibold text-sm rounded-full">${r.score}/100</span>
+      </div>
+    `).join('');
+  }
+
+  // Render teacher view
+  function renderTeacher() {
+    if (!isTeacherLoggedIn) return;
+    
+    const list = document.getElementById('teacher-list');
+    const empty = document.getElementById('teacher-empty');
+    if (allRecords.length === 0) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+
+    const sorted = [...allRecords].sort((a, b) => b.score - a.score);
+    list.innerHTML = sorted.map(r => `
+      <details class="bg-white border border-[#d4a574] rounded-lg shadow-sm">
+        <summary class="cursor-pointer p-4 font-semibold text-[#8b4513] flex items-center justify-between">
+          <span>${escHtml(r.student_name)} - Điểm: ${r.score}/100</span>
+          <span class="text-xs font-normal text-[#8b7355]">${new Date(r.submitted_at).toLocaleString('vi-VN')}</span>
+        </summary>
+        <div class="p-4 pt-0 border-t border-[#f0e0cc] space-y-3 text-sm">
+          <div><span class="font-semibold text-[#065f46]">Thuận lợi:</span><div class="mt-1">${renderTags(r.thuan_loi)}</div></div>
+          <div><span class="font-semibold text-[#991b1b]">Khó khăn:</span><div class="mt-1">${renderTags(r.kho_khan)}</div></div>
+          <div><span class="font-semibold text-[#1e40af]">Vấn đề cần giải quyết:</span><div class="mt-1">${renderTags(r.van_de)}</div></div>
+          <div><span class="font-semibold text-[#78350f]">Giải pháp đề xuất:</span><div class="mt-1">${r.giai_phap ? renderTags(r.giai_phap) : '<em class="text-gray-400">Chưa điền</em>'}</div></div>
+        </div>
+      </details>
+    `).join('');
+  }
+
+  function renderTags(text) {
+    if (!text) return '<em class="text-gray-400">Chưa điền</em>';
+    return text.split(';').map(t => t.trim()).filter(Boolean).map(t => `<span class="tag">${escHtml(t)}</span>`).join(' ');
+  }
+
+  function escHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+  // Data SDK
+  const dataHandler = {
+    onDataChanged(data) {
+      allRecords = data;
+      currentRecordCount = data.length;
+      renderLeaderboard();
+      if (isTeacherLoggedIn) renderTeacher();
+    }
+  };
+
+  // Element SDK
+  const defaultConfig = {
+    main_title: 'Phiếu Học Tập: Bối Cảnh Cuộc Cải Cách Minh Mạng',
+    background_color: '#faf6f0',
+    surface_color: '#ffffff',
+    text_color: '#3d2b1f',
+    primary_color: '#8b4513',
+    accent_color: '#d4a574',
+    font_family: 'Be Vietnam Pro',
+    font_size: 14
+  };
+
+  function applyConfig(config) {
+    document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
+    document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+    document.body.style.color = config.text_color || defaultConfig.text_color;
+    const header = document.querySelector('header');
+    header.style.backgroundColor = config.primary_color || defaultConfig.primary_color;
+    const font = config.font_family || defaultConfig.font_family;
+    document.body.style.fontFamily = `${font}, sans-serif`;
+    const size = config.font_size || defaultConfig.font_size;
+    document.body.style.fontSize = size + 'px';
+  }
+
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange: async (config) => { applyConfig(config); },
+    mapToCapabilities: (config) => ({
+      recolorables: [
+        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+        { get: () => config.primary_color || defaultConfig.primary_color, set: (v) => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
+        { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } }
+      ],
+      borderables: [],
+      fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+      fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+    }),
+    mapToEditPanelValues: (config) => new Map([
+      ['main_title', config.main_title || defaultConfig.main_title]
+    ])
+  });
+
+  (async () => {
+    const r = await window.dataSdk.init(dataHandler);
+    if (!r.isOk) console.error('Data SDK init failed');
+  })();
+
+  lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a05cc136a993dd9f',t:'MTc4MDQ2OTMzMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
